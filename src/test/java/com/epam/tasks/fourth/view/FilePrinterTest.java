@@ -1,15 +1,16 @@
 package com.epam.tasks.fourth.view;
 
+import com.epam.tasks.fourth.domain.ArrayHelper;
 import org.junit.Assert;
 import org.junit.Test;
 import java.io.*;
 
-public class FileOutputServiceTest {
+public class FilePrinterTest {
     private File file = new File("src/test/resources/toTestFileOutputService");
-    private FileOutputService outputService = new FileOutputService(file);
+    private FilePrinter outputService = new FilePrinter(new ArrayHelper(), file);
     private BufferedReader reader = new BufferedReader(new FileReader( file));
 
-    public FileOutputServiceTest() throws IOException {
+    public FilePrinterTest() throws IOException {
     }
 
     @Test
@@ -37,14 +38,17 @@ public class FileOutputServiceTest {
     private String arrayToString(int[] array) {
         StringBuilder stringBuilder = new StringBuilder();
 
+        stringBuilder.append('[');
         for (int number : array) {
             stringBuilder.append(number);
-            stringBuilder.append(" ");
+            stringBuilder.append(", ");
         }
 
-        //remove last space
+        //remove ", " from the end
         int length = stringBuilder.length();
-        stringBuilder.delete(length - 1, length);
+        stringBuilder.delete(length - 2, length);
+
+        stringBuilder.append(']');
 
         return stringBuilder.toString();
     }

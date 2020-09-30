@@ -4,10 +4,10 @@ import org.junit.*;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class ConsoleNumberInputServiceTest {
+public class ConsoleNumberAcquirerTest {
     public static final String NUMBER = "10";
     public static final String NUMBERS = "1 2 3 4 5";
-    private ConsoleNumberInputService inputService = new ConsoleNumberInputService();
+    private ConsoleNumberAcquirer inputService = new ConsoleNumberAcquirer();
     private static InputStream inputStream;
     private static MockInputStream mockInputStream = new MockInputStream();
 

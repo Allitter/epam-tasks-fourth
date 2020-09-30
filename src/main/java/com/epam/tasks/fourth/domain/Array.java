@@ -1,17 +1,22 @@
 package com.epam.tasks.fourth.domain;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class Array {
     private int[] array;
+    private ArrayHelper helper;
 
-    public Array(int size) {
+    public Array(final ArrayHelper helper, int size) {
         array = new int[size];
+        this.helper = helper;
     }
 
-    public Array(int...array) {
+    public Array(final ArrayHelper helper, int...array) {
         this.array = array;
+        this.helper = helper;
     }
 
     public int getElement(int index) {
@@ -26,88 +31,45 @@ public class Array {
         return array != null ? array.length : 0;
     }
 
-    public void setArray(int[] array) {
-        this.array = array;
-    }
-
-    /*package friendly for test*/ int[] getArray() {
+    /*package friendly for test*/
+    int[] getArray() {
         return array;
     }
 
-    public void sort(boolean ascending) {
-        if (ascending) {
-            insertionSortAscending(array);
-        } else {
-            insertionSortDescending(array);
-        }
+    public void sort() {
+        insertionSortAscending(array);
     }
 
     public int[] getThreeDigitNumsWithNoDuplicates() {
         List<Integer> resultNumbers = new LinkedList<>();
-        ListToArrayConverter converter = new ListToArrayConverter();
-
         for (int number : array) {
             if (isThreeDigitNumber(number) && !hasDuplicateDigits(number)) {
                 resultNumbers.add(number);
             }
         }
 
-        return converter.convertIntegerListToIntArray(resultNumbers);
+        return helper.convertIntegerListToIntArray(resultNumbers);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Array array1 = (Array)o;
-        if (array.length != array1.array.length) {
-            return false;
-        }
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != array1.array[i]) {
-                return false;
-            }
-        }
-
-        return true;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Array array1 = (Array) o;
+        return Arrays.equals(array, array1.array) &&
+                Objects.equals(helper, array1.helper);
     }
 
     @Override
     public int hashCode() {
-        if (array == null) {
-            return 0;
-        }
-
-        int result = 1;
-        for (int element : array) {
-            result = 31 * result + element;
-        }
-
+        int result = Objects.hash(helper);
+        result = 31 * result + Arrays.hashCode(array);
         return result;
     }
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append('[');
-        for (int element : array) {
-            stringBuilder.append(String.format("%d, ", element));
-        }
-
-        //remove ", " from the end
-        int length = stringBuilder.length();
-        stringBuilder.delete(length - 2, length);
-
-        stringBuilder.append(']');
-
-        return stringBuilder.toString();
+        return helper.arrayToString(array);
     }
 
     private boolean hasDuplicateDigits(int number) {
@@ -142,25 +104,6 @@ public class Array {
                 j = i;
 
                 while (j > 0 && array[j - 1] > buff) {
-                    array[j] = array[j - 1];
-                    j--;
-                }
-
-                array[j] = buff;
-            }
-        }
-    }
-
-    private void insertionSortDescending(int[] array) {
-        int buff;
-        int j;
-
-        for (int i = 1; i < array.length; i++) {
-            if (array[i] > array[i - 1]) {
-                buff = array[i];
-                j = i;
-
-                while (j > 0 && array[j - 1] < buff) {
                     array[j] = array[j - 1];
                     j--;
                 }

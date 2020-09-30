@@ -6,11 +6,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FileNumberInputServiceTest {
+public class FileNumberAcquirerTest {
     private File file = new File("src/test/resources/toTestFileNumberInputService");
-    private FileNumberInputService inputService = new FileNumberInputService(file);
+    private FileNumberAcquirer inputService = new FileNumberAcquirer(file);
 
-    public FileNumberInputServiceTest() throws FileNotFoundException {
+    public FileNumberAcquirerTest() throws FileNotFoundException {
     }
 
     @Test

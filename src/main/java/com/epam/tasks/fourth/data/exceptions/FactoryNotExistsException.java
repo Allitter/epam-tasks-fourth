@@ -1,14 +1,18 @@
 package com.epam.tasks.fourth.data.exceptions;
 
-import com.epam.tasks.fourth.exceptions.IncorrectArgumentException;
-
-public class FactoryNotExistsException extends IncorrectArgumentException {
-
+public class FactoryNotExistsException extends Exception {
     public FactoryNotExistsException() {
-        super("Factory Not Exists");
     }
 
     public FactoryNotExistsException(String message) {
         super(message);
+    }
+
+    public FactoryNotExistsException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public FactoryNotExistsException(Throwable cause) {
+        super(cause);
     }
 }

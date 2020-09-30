@@ -3,8 +3,8 @@ package com.epam.tasks.fourth.data.input;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class RandomNumberInputServiceTest {
-    private RandomNumberInputService inputService = new RandomNumberInputService();
+public class RandomNumberAcquirerTest {
+    private RandomNumberAcquirer inputService = new RandomNumberAcquirer();
 
     @Test
     public void testReadNumbersShouldReadNumbers() {

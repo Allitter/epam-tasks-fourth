@@ -1,30 +1,29 @@
 package com.epam.tasks.fourth.data;
 
 import com.epam.tasks.fourth.data.exceptions.FactoryNotExistsException;
-import com.epam.tasks.fourth.data.input.ConsoleNumberInputService;
-import com.epam.tasks.fourth.data.input.FileNumberInputService;
-import com.epam.tasks.fourth.data.input.NumberInputService;
-import com.epam.tasks.fourth.data.input.RandomNumberInputService;
+import com.epam.tasks.fourth.data.input.ConsoleNumberAcquirer;
+import com.epam.tasks.fourth.data.input.FileNumberAcquirer;
+import com.epam.tasks.fourth.data.input.NumberAcquirer;
+import com.epam.tasks.fourth.data.input.RandomNumberAcquirer;
+import java.io.FileNotFoundException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-
-public class NumberInputServiceFactoryTest {
+public class NumberAcquirerFactoryTest {
     private static final String NOT_EXISTING_FACTORY_NAME = "not existing factory";
     private static final String FILE_FACTORY_NAME = "file";
     private static final String PATH_TO_EMPTY_FILE = "src/test/resources/emptyFile";
     private static final String CONSOLE_FACTORY_NAME = "console";
     private static final String RANDOM_FACTORY_NAME = "random";
-    private NumberInputServiceFactory factory = new NumberInputServiceFactory();
+    private NumberAcquirerFactory factory = new NumberAcquirerFactory();
 
     @Test
     public void testCreateNumberInputServiceShouldReturnConsoleNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = ConsoleNumberInputService.class;
+        Class expected = ConsoleNumberAcquirer.class;
 
-        NumberInputService inputService =
+        NumberAcquirer inputService =
                 factory.createService(CONSOLE_FACTORY_NAME, "");
         Class actual = inputService.getClass();
 
@@ -35,9 +34,9 @@ public class NumberInputServiceFactoryTest {
     public void testCreateNumberInputServiceShouldReturnFileNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = FileNumberInputService.class;
+        Class expected = FileNumberAcquirer.class;
 
-        NumberInputService inputService =
+        NumberAcquirer inputService =
                 factory.createService(FILE_FACTORY_NAME, PATH_TO_EMPTY_FILE);
         Class actual = inputService.getClass();
 
@@ -48,9 +47,9 @@ public class NumberInputServiceFactoryTest {
     public void testCreateNumberInputServiceShouldReturnRandomNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = RandomNumberInputService.class;
+        Class expected = RandomNumberAcquirer.class;
 
-        NumberInputService inputService =
+        NumberAcquirer inputService =
                 factory.createService(RANDOM_FACTORY_NAME, "");
         Class actual = inputService.getClass();
 
@@ -61,9 +60,9 @@ public class NumberInputServiceFactoryTest {
     public void testCreateNumberInputServiceWithIncorrectFactory()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = RandomNumberInputService.class;
+        Class expected = RandomNumberAcquirer.class;
 
-        NumberInputService inputService =
+        NumberAcquirer inputService =
                 factory.createService(NOT_EXISTING_FACTORY_NAME, "");
         Class actual = inputService.getClass();
 

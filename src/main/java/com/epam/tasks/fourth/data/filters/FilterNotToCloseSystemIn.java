@@ -1,7 +1,6 @@
 package com.epam.tasks.fourth.data.filters;
 
 import java.io.FilterInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class FilterNotToCloseSystemIn extends FilterInputStream {
@@ -19,7 +18,7 @@ public class FilterNotToCloseSystemIn extends FilterInputStream {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
     }
 
 }

@@ -5,17 +5,26 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ListToArrayConverterTest {
-    private ListToArrayConverter converter = new ListToArrayConverter();
+public class ArrayHelperTest {
+    private ArrayHelper converter = new ArrayHelper();
 
     @Test
-    public void convertIntegerListToIntArrayShouldReturnIntArray() {
+    public void testConvertIntegerListToIntArrayShouldReturnIntArray() {
         int[] expected = {1, 2, 3, 4, 5};
         List<Integer> list = arrayToList(expected);
 
         int[] actual = converter.convertIntegerListToIntArray(list);
 
         Assert.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testArrayToString() {
+        int[] input = {1, 2, 3, 4, 5};
+        String expected = "[1, 2, 3, 4, 5]";
+        String actual = converter.arrayToString(input);
+
+        Assert.assertEquals(expected, actual);
     }
 
     private List<Integer> arrayToList(int[] array) {
