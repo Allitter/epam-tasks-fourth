@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.io.*;
 
 public class FilePrinterTest {
-    private File file = new File("src/test/resources/toTestFileOutputService");
-    private FilePrinter outputService = new FilePrinter(new ArrayHelper(), file);
-    private BufferedReader reader = new BufferedReader(new FileReader( file));
+    private final File file = new File("src/test/resources/toTestFileOutputService");
+    private final FilePrinter outputService = new FilePrinter(new ArrayHelper(), file);
+    private final BufferedReader reader = new BufferedReader(new FileReader( file));
 
     public FilePrinterTest() throws IOException {
     }

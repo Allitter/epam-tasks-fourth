@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayHelperTest {
-    private ArrayHelper converter = new ArrayHelper();
+    private final ArrayHelper converter = new ArrayHelper();
 
     @Test
     public void testConvertIntegerListToIntArrayShouldReturnIntArray() {

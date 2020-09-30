@@ -34,7 +34,7 @@ public class Main {
         array.sort();
         int[] noDuplicates = array.getThreeDigitNumsWithNoDuplicates();
 
-        File outputFile = new File("resultfile.txt");
+        File outputFile = new File("result_file.txt");
         Printer printer = new FilePrinter(helper, outputFile);
         printer.printLine(array.toString(), true);
         printer.printArray(noDuplicates, true);

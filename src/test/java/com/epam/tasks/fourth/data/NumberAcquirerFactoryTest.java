@@ -15,57 +15,42 @@ public class NumberAcquirerFactoryTest {
     private static final String PATH_TO_EMPTY_FILE = "src/test/resources/emptyFile";
     private static final String CONSOLE_FACTORY_NAME = "console";
     private static final String RANDOM_FACTORY_NAME = "random";
-    private NumberAcquirerFactory factory = new NumberAcquirerFactory();
+    private final NumberAcquirerFactory factory = new NumberAcquirerFactory();
 
     @Test
     public void testCreateNumberInputServiceShouldReturnConsoleNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = ConsoleNumberAcquirer.class;
+        NumberAcquirer acquirer =
+                factory.createAcquirer(CONSOLE_FACTORY_NAME, "");
 
-        NumberAcquirer inputService =
-                factory.createService(CONSOLE_FACTORY_NAME, "");
-        Class actual = inputService.getClass();
-
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(acquirer instanceof ConsoleNumberAcquirer);
     }
 
     @Test
     public void testCreateNumberInputServiceShouldReturnFileNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = FileNumberAcquirer.class;
+        NumberAcquirer acquirer =
+                factory.createAcquirer(FILE_FACTORY_NAME, PATH_TO_EMPTY_FILE);
 
-        NumberAcquirer inputService =
-                factory.createService(FILE_FACTORY_NAME, PATH_TO_EMPTY_FILE);
-        Class actual = inputService.getClass();
-
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(acquirer instanceof FileNumberAcquirer);
     }
 
     @Test
     public void testCreateNumberInputServiceShouldReturnRandomNumberInputService()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = RandomNumberAcquirer.class;
+        NumberAcquirer acquirer =
+                factory.createAcquirer(RANDOM_FACTORY_NAME, "");
 
-        NumberAcquirer inputService =
-                factory.createService(RANDOM_FACTORY_NAME, "");
-        Class actual = inputService.getClass();
-
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(acquirer instanceof RandomNumberAcquirer);
     }
 
     @Test(expected = FactoryNotExistsException.class)
     public void testCreateNumberInputServiceWithIncorrectFactory()
             throws FileNotFoundException, FactoryNotExistsException {
 
-        Class expected = RandomNumberAcquirer.class;
-
-        NumberAcquirer inputService =
-                factory.createService(NOT_EXISTING_FACTORY_NAME, "");
-        Class actual = inputService.getClass();
-
-        Assert.assertEquals(expected, actual);
+        factory.createAcquirer(NOT_EXISTING_FACTORY_NAME, "");
     }
 }

@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ArrayTest {
-    private Array array = new Array(new ArrayHelper(), 201, 102, 305, 505, 408);
+    private final Array array = new Array(new ArrayHelper(), 201, 102, 305, 505, 408);
 
     @Test
     public void testSortShouldSortAscending() {

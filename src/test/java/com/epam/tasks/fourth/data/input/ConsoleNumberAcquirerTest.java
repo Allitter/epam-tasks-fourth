@@ -7,14 +7,14 @@ import java.util.Scanner;
 public class ConsoleNumberAcquirerTest {
     public static final String NUMBER = "10";
     public static final String NUMBERS = "1 2 3 4 5";
-    private ConsoleNumberAcquirer inputService = new ConsoleNumberAcquirer();
+    private static final MockInputStream MOCK_INPUT_STREAM = new MockInputStream();
+    private final ConsoleNumberAcquirer inputService = new ConsoleNumberAcquirer();
     private static InputStream inputStream;
-    private static MockInputStream mockInputStream = new MockInputStream();
 
     @BeforeClass
     public static void toDoBeforeAllTests() {
         inputStream = System.in;
-        System.setIn(mockInputStream);
+        System.setIn(MOCK_INPUT_STREAM);
     }
 
     @AfterClass
@@ -24,7 +24,7 @@ public class ConsoleNumberAcquirerTest {
 
     @Test
     public void testReadNumberShouldReadNumber() {
-        mockInputStream.setInput(NUMBER);
+        MOCK_INPUT_STREAM.setInput(NUMBER);
         int expected = Integer.parseInt(NUMBER);
 
         int actual = inputService.readNumber();
@@ -34,7 +34,7 @@ public class ConsoleNumberAcquirerTest {
 
     @Test
     public void testReadNumbersShouldReadNumbers() {
-        mockInputStream.setInput(NUMBERS);
+        MOCK_INPUT_STREAM.setInput(NUMBERS);
         int[] expected = stringToIntArray(NUMBERS);
         
         int[] actual = inputService.readNumbers(5);
