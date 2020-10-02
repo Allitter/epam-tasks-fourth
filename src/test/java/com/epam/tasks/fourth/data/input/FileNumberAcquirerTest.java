@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class FileNumberAcquirerTest {
-    private final File file = new File("src/test/resources/toTestFileNumberInputService");
-    private final FileNumberAcquirer inputService = new FileNumberAcquirer(file);
+    private final File file = new File("src/test/resources/toTestFileNumberAcquirer");
+    private final FileNumberAcquirer acquirer = new FileNumberAcquirer(file);
 
     public FileNumberAcquirerTest() throws FileNotFoundException {
     }
@@ -15,7 +15,7 @@ public class FileNumberAcquirerTest {
     @Test
     public void testReadNumberShouldReadNumber() {
         int expected = 1;
-        int actual = inputService.readNumber();
+        int actual = acquirer.readNumber();
 
         Assert.assertEquals(expected, actual);
     }
@@ -24,7 +24,7 @@ public class FileNumberAcquirerTest {
     public void testReadNumbersShouldReadNumbers() {
         int[] expected = {1, 2, 3, 4, 5};
 
-        int[] actual = inputService.readNumbers(5);
+        int[] actual = acquirer.readNumbers(5);
 
         Assert.assertArrayEquals(expected, actual);
     }

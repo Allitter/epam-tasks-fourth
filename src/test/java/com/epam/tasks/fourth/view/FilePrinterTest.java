@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.io.*;
 
 public class FilePrinterTest {
-    private final File file = new File("src/test/resources/toTestFileOutputService");
-    private final FilePrinter outputService = new FilePrinter(new ArrayHelper(), file);
+    private final File file = new File("src/test/resources/toTestFilePrinter");
+    private final FilePrinter printer = new FilePrinter(new ArrayHelper(), file);
     private final BufferedReader reader = new BufferedReader(new FileReader( file));
 
     public FilePrinterTest() throws IOException {
@@ -18,7 +18,7 @@ public class FilePrinterTest {
         int[] array  = {1, 2, 3, 4, 5};
         String expected = arrayToString(array);
 
-        outputService.printArray(array, false);
+        printer.printArray(array, false);
         String actual = reader.readLine();
 
         Assert.assertEquals(expected, actual);
@@ -28,7 +28,7 @@ public class FilePrinterTest {
     public void testPrintLineShouldPrintLine() throws IOException {
         String expected = "line";
 
-        outputService.printLine(expected, false);
+        printer.printLine(expected, false);
         String actual = reader.readLine();
 
         Assert.assertEquals(expected, actual);

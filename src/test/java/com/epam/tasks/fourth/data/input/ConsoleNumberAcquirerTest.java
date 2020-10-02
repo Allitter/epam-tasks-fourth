@@ -8,7 +8,7 @@ public class ConsoleNumberAcquirerTest {
     public static final String NUMBER = "10";
     public static final String NUMBERS = "1 2 3 4 5";
     private static final MockInputStream MOCK_INPUT_STREAM = new MockInputStream();
-    private final ConsoleNumberAcquirer inputService = new ConsoleNumberAcquirer();
+    private final ConsoleNumberAcquirer acquirer = new ConsoleNumberAcquirer();
     private static InputStream inputStream;
 
     @BeforeClass
@@ -27,7 +27,7 @@ public class ConsoleNumberAcquirerTest {
         MOCK_INPUT_STREAM.setInput(NUMBER);
         int expected = Integer.parseInt(NUMBER);
 
-        int actual = inputService.readNumber();
+        int actual = acquirer.readNumber();
 
         Assert.assertEquals(expected, actual);
     }
@@ -37,7 +37,7 @@ public class ConsoleNumberAcquirerTest {
         MOCK_INPUT_STREAM.setInput(NUMBERS);
         int[] expected = stringToIntArray(NUMBERS);
         
-        int[] actual = inputService.readNumbers(5);
+        int[] actual = acquirer.readNumbers(5);
 
         Assert.assertArrayEquals(expected, actual);
     }

@@ -18,7 +18,7 @@ public class NumberAcquirerFactoryTest {
     private final NumberAcquirerFactory factory = new NumberAcquirerFactory();
 
     @Test
-    public void testCreateNumberInputServiceShouldReturnConsoleNumberInputService()
+    public void testCreateNumberAcquirerShouldReturnConsoleNumberAcquirer()
             throws FileNotFoundException, FactoryNotExistsException {
 
         NumberAcquirer acquirer =
@@ -28,7 +28,7 @@ public class NumberAcquirerFactoryTest {
     }
 
     @Test
-    public void testCreateNumberInputServiceShouldReturnFileNumberInputService()
+    public void testCreateNumberAcquirerShouldReturnFileNumberAcquirer()
             throws FileNotFoundException, FactoryNotExistsException {
 
         NumberAcquirer acquirer =
@@ -38,7 +38,7 @@ public class NumberAcquirerFactoryTest {
     }
 
     @Test
-    public void testCreateNumberInputServiceShouldReturnRandomNumberInputService()
+    public void testCreateNumberAcquirerShouldReturnRandomNumberAcquirer()
             throws FileNotFoundException, FactoryNotExistsException {
 
         NumberAcquirer acquirer =
@@ -48,7 +48,7 @@ public class NumberAcquirerFactoryTest {
     }
 
     @Test(expected = FactoryNotExistsException.class)
-    public void testCreateNumberInputServiceWithIncorrectFactory()
+    public void testCreateNumberAcquirerWithIncorrectFactory()
             throws FileNotFoundException, FactoryNotExistsException {
 
         factory.createAcquirer(NOT_EXISTING_FACTORY_NAME, "");
