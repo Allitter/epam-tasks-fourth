@@ -1,14 +1,16 @@
 package com.epam.tasks.fourth.view;
 
 import com.epam.tasks.fourth.domain.ArrayHelper;
+import com.epam.tasks.fourth.domain.ArrayHelperStub;
 import org.junit.Assert;
 import org.junit.Test;
 import java.io.*;
 
 public class FilePrinterTest {
+    private final ArrayHelper helper = new ArrayHelperStub();
     private final File file = new File("src/test/resources/toTestFilePrinter");
-    private final FilePrinter printer = new FilePrinter(new ArrayHelper(), file);
-    private final BufferedReader reader = new BufferedReader(new FileReader( file));
+    private final FilePrinter printer = new FilePrinter(helper, file);
+    private final BufferedReader reader = new BufferedReader(new FileReader(file));
 
     public FilePrinterTest() throws IOException {
     }
