@@ -10,8 +10,6 @@ package com.epam.tasks.fourth;
 //  3. Заполнения элементов массива и с консоли, и с файла и с помощью генерации
 //  случайных чисел.
 
-// TODO заменить пути на относительные
-
 import com.epam.tasks.fourth.data.exceptions.FactoryNotExistsException;
 import com.epam.tasks.fourth.data.NumberAcquirerFactory;
 import com.epam.tasks.fourth.data.input.NumberAcquirer;
